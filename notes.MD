@@ -1,0 +1,1 @@
+I have created a maven quick start in inteliJ
