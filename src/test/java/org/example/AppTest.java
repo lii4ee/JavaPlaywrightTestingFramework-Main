@@ -3,14 +3,35 @@ package org.example;
 import com.microsoft.playwright.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.microsoft.playwright.*;
+
+import utils.ExtentReportManager;
 
 public class AppTest {
-
+    public static ExtentReports extent;
     protected ThreadLocal<Playwright> playwright = new ThreadLocal<>();
     protected ThreadLocal<Browser> browser = new ThreadLocal<>();
     protected ThreadLocal<BrowserContext> context = new ThreadLocal<>();
     protected ThreadLocal<Page> page = new ThreadLocal<>();
 
+    public Page getPage() {
+        return page.get();
+    }
+
+    @BeforeSuite
+    public void setupSuite() {
+        // This guarantees the engine launches BEFORE anything else runs
+        extent = ExtentReportManager.initReport();
+    }
+
+    @AfterSuite
+    public void tearDownSuite() {
+        // This guarantees the HTML file writes out AFTER all tests finish
+        if (extent != null) {
+            extent.flush();
+        }
+    }
 
     @BeforeMethod
     public void createPageContext() {

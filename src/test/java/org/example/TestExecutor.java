@@ -1,19 +1,23 @@
 package org.example;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import methodCaller.MethodCaller;
+
 public class TestExecutor extends AppTest{
+
 
     @Test
     public void example2s() throws InterruptedException {
         System.out.println(
                 System.currentTimeMillis() + " : Thread 1 STARTED"
         );
+        MethodCaller.methodCallerMain(page.get());
         Thread.sleep(5000);
         System.out.println(
                 System.currentTimeMillis() + " : Thread 1 FINISHED"
         );
+
     }
 
     @Test
