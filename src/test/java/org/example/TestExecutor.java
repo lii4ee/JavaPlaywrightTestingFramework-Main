@@ -3,9 +3,10 @@ package org.example;
 import org.testng.annotations.Test;
 
 import methodCaller.MethodCaller;
+import utils.ExtentTestListener;
 
 public class TestExecutor extends AppTest{
-
+    ExtentTestListener extentTestListener = new ExtentTestListener();
 
     @Test
     public void example2s() throws InterruptedException {
@@ -17,7 +18,6 @@ public class TestExecutor extends AppTest{
         System.out.println(
                 System.currentTimeMillis() + " : Thread 1 FINISHED"
         );
-
     }
 
     @Test
